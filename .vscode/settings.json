@@ -1,12 +1,4 @@
 {
-  "npm.exclude": [
-    "**/libs/**",
-    "**/apps/**",
-  ],
-
-  "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    "svelte"
-  ]
-}
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true
+} 
