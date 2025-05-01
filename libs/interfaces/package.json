@@ -1,0 +1,25 @@
+{
+  "name": "@monorepo-svelte-nestjs/interfaces",
+  "private": true,
+  "version": "0.0.0",
+  "files": [
+    "dist"
+  ],
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "license": "MIT",
+  "scripts": {
+    "lib:build": "tsc --build tsconfig.build.json",
+    "lib:clean": "rimraf ./dist",
+    "lib:lint": "eslint \"src/**/*.ts\" --fix"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.21.0",
+    "@typescript-eslint/parser": "^5.21.0",
+    "eslint": "^8.14.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "rimraf": "^3.0.2",
+    "typescript": "4.6.3"
+  }
+}
