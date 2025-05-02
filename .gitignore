@@ -1,3 +1,9 @@
 node_modules
 .svelte-kit
 .DS_Store
+
+#Prisma
+.prisma/*
+prisma/dev.db
+prisma/migrations/*.tmp
+

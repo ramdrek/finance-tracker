@@ -29,5 +29,13 @@ export default defineConfig({
 				}
 			}
 		]
+	},
+	server: {
+		host: true,
+		port: 3000,
+		strictPort: true
+	},
+	optimizeDeps: {
+		exclude: ['/app/node_modules/.vite/deps/chunk-6FCZEMHD.js']
 	}
 });
