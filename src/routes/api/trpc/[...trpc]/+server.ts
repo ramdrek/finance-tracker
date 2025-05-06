@@ -9,4 +9,4 @@ export const GET = (event: { request: any }) =>
     req: event.request,
     router: appRouter,
     createContext,
-  })
+  })  

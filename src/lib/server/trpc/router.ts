@@ -1,9 +1,16 @@
-// src/lib/server/trpc/router.ts
-import { initTRPC } from '@trpc/server'
-const t = initTRPC.create()
+import { t } from '../trpc';
+import { PrismaClient } from '@prisma/client';
+
+//const t = initTRPC.create()
+
+const prisma = new PrismaClient();
 
 export const appRouter = t.router({
-  hello: t.procedure.query(() => 'Hello from tRPC 🎉'),
-})
+  getTransactions: t.procedure.query(async () => {
+    return await prisma.transaction.findMany({
+      orderBy: { createdAt: 'desc' }
+    });
+  }),
+});
 
-export type AppRouter = typeof appRouter
+export type AppRouter = typeof appRouter;

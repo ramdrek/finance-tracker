@@ -1,8 +1,12 @@
-import type { Load } from '@sveltejs/kit'
-import { createTrpcClient } from '$lib/trpc/createClient'
+// src/routes/+page.ts
+import type { PageLoad } from './$types';
+import { createTrpcClient } from '$lib/trpc/client';
 
-export const load: Load = async (event) => {
-  const trpc = createTrpcClient(event.fetch)
-  const greeting = await trpc.hello.query()
-  return { greeting }
-}
+export const load: PageLoad = async (event) => {
+  const trpc = createTrpcClient(event.fetch);
+  const transactions = await trpc.getTransactions.query();
+
+  return {
+    transactions,
+  };
+};
