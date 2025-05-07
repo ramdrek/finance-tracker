@@ -1,35 +1,44 @@
 <script lang="ts">
+  type Transaction = {
+    id: string;
+    type: string;
+    amount: number;
+    category: string;
+    note?: string;
+    createdAt: string;
+  };
+
   export let data: {
-    transactions: {
-      id: string;
-      type: string;
-      amount: number;
-      category: string;
-      note?: string;
-      createdAt: string;
-      updatedAt: string;
-    }[];
+    recent: Transaction[];
   };
 </script>
 
-<h2 class="text-xl font-bold mb-4">Transactions</h2>
+<div class="space-y-6 text-gray-200">
+  <div>
+    <h1 class="text-3xl font-bold text-blue-400">Welcome back 👋</h1>
+    <p class="text-gray-400">Here are your 5 most recent transactions:</p>
+  </div>
 
-{#if data.transactions.length === 0}
-  <p>No transactions available.</p>
-{:else}
-  <ul class="space-y-4">
-    {#each data.transactions as txn}
-      <li class="border p-4 rounded shadow">
-        <div><strong>Type:</strong> {txn.type}</div>
-        <div><strong>Amount:</strong> ${txn.amount}</div>
-        <div><strong>Category:</strong> {txn.category}</div>
-        {#if txn.note}
-          <div><strong>Note:</strong> {txn.note}</div>
-        {/if}
-        <small class="text-gray-500 block mt-2">
-          Created: {new Date(txn.createdAt).toLocaleString()}
-        </small>
-      </li>
-    {/each}
-  </ul>
-{/if}
+  <div class="overflow-hidden rounded-lg shadow bg-gray-800">
+    <table class="min-w-full text-sm">
+      <thead>
+        <tr class="bg-blue-600 text-white">
+          <th class="px-4 py-3 text-left">Date</th>
+          <th class="px-4 py-3 text-left">Type</th>
+          <th class="px-4 py-3 text-left">Category</th>
+          <th class="px-4 py-3 text-left">Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        {#each data.recent as txn, i}
+          <tr class="{i % 2 === 0 ? 'bg-gray-900' : 'bg-gray-800'} hover:bg-gray-700 transition">
+            <td class="px-4 py-3">{new Date(txn.createdAt).toLocaleDateString()}</td>
+            <td class="px-4 py-3">{txn.type}</td>
+            <td class="px-4 py-3">{txn.category}</td>
+            <td class="px-4 py-3 font-semibold text-blue-400">${txn.amount.toFixed(2)}</td>
+          </tr>
+        {/each}
+      </tbody>
+    </table>
+  </div>
+</div>
