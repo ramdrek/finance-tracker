@@ -3,6 +3,11 @@ import type { PageLoad } from './$types';
 
 export const load: PageLoad = async ({ fetch }) => {
   const trpc = createTrpcClient(fetch);
-  const transactions = await trpc.getTransactions.query();
-  return { transactions };
+
+  const [transactions, categories ] = await Promise.all([
+    await trpc.getTransactions.query(),
+    await trpc.getCategories.query()
+  ]);
+
+  return { transactions, categories };
 };
